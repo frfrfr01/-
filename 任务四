@@ -1,0 +1,79 @@
+//需注意整数和百分数整数范围可能为长整型
+#include<iostream>
+#include<cstring>
+typedef long long ll;
+using namespace std;
+int ca(string s)
+{
+    int i=0;
+    while(s[i])
+    {
+  	if(s[i]=='.') return 1;
+  	if(s[i]=='/') return 2;
+  	if(s[i]=='%') return 3;
+  	i++;
+    }
+    return 4; 
+}
+string s;
+int main()
+{
+    cin>>s;
+    int de=ca(s);
+    //cout<<de<<endl;
+    if(de==4)
+    {
+  	ll s3=0;
+  	for(int q=s.length()-1;q>=0;q--)
+  	{
+            s3=s3*10+s[q]-'0';
+  	}
+        cout<<s3;
+    }
+    else if(de==1)
+    {
+  	int j=s.find('.');
+  	int sum1=0,sum2=0;
+  	for(int m=j-1;m>=0;m--)
+  	{
+            sum1=sum1*10+s[m]-'0';
+  	}
+  	for(int n=s.length()-1;n>=j+1;n--)
+  	{
+            sum2=sum2*10+s[n]-'0';
+  	}
+  	if(sum2!=0)
+  	{
+            while(sum2%10==0)
+   	    {
+    		sum2=sum2/10;
+            }
+  	}
+  	cout<<sum1<<"."<<sum2;
+    }
+    else if(de==2)
+    {
+  	int j=s.find('/');
+  	int s1=0,s2=0;
+  	for(int m=j-1;m>=0;m--)
+  	{
+            s1=s1*10+s[m]-'0';
+  	}
+  	for(int n=s.length()-1;n>=j+1;n--)
+  	{
+            s2=s2*10+s[n]-'0';
+  	}
+        cout<<s1<<"/"<<s2;
+    }
+    else if(de==3)
+    {
+  	int len=s.length()-1;
+  	ll summ=0;
+  	for(int p=len-1;p>=0;p--)
+  	{
+            summ=summ*10+s[p]-'0';
+        }
+        cout<<summ<<"%";
+    }
+    return 0;
+}
