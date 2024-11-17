@@ -1,0 +1,19 @@
+import numpy as np
+from numpy import *
+
+matrix_size = tuple(map(int,input().split()))
+matrix = np.array([list(map(int,input().split()))for_in range(matrix_size[0])])
+
+try:
+    A = np.matrix
+    B=np.linalg.inv(A)
+    print(A)
+except:
+    print("矩阵不存在逆矩阵")
+else:
+    print(B)
+
+
+
+
+
